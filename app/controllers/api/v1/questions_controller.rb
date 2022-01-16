@@ -14,7 +14,8 @@ class Api::V1::QuestionsController < ApplicationController
             render json: question, status: :accepted
         else
             render json: {errors: question.errors.full_messages}, status: :unprocessable_entity
-    end 
+        end
+    end
 
     def show
         question = Question.find(params[:id])

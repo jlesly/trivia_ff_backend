@@ -1,6 +1,6 @@
 class Api::V1::UsersController < ApplicationController
     def index
-        user = User.all
+        users = User.all
         render json: UserSerializer.new(users)
     end 
 
@@ -14,15 +14,15 @@ class Api::V1::UsersController < ApplicationController
                 render json: user, status: :accepted
             else
                 render json: { errors: user.errors.full_messages}, status: :unprocessable_entity
-    end 
+            end 
+    end
 
     def show
         user = User.find(params[:id])
     end 
 
     private
-
-        def user_params
-            params.require(:user).permit(:username, :score)
-        end 
+    def user_params
+        params.require(:user).permit(:username, :score)
+    end 
 end
